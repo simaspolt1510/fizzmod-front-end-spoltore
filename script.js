@@ -31,11 +31,20 @@ a.addEventListener("click", e=> {
     var botonCancelar = document.createElement("button");
     botonCancelar.innerText = "cancelar";
     botonCancelar.id = "cancelar";
-    div.appendChild(p);
-    div.appendChild(botonAceptar);
-    div.appendChild(botonCancelar);
+
+    var fragmento = document.createDocumentFragment();
+
+    fragmento.appendChild(p);
+    fragmento.appendChild(botonAceptar);
+    fragmento.appendChild(botonCancelar);
+
+    div.appendChild(fragmento);
     document.body.appendChild(div);
+    
 });
+
+
+
 
 //Se establece el comportamiento al hacer click en cada botón :
 document.addEventListener("click", e=>{
@@ -43,10 +52,9 @@ document.addEventListener("click", e=>{
     if (e.target.id == "aceptar") {
         window.location = a.href;
 
-    //borrar el mensaje (p) cuando se hace click en "cancelar"
+    //borrar el mensaje de "p" cuando se hace click en "cancelar"
     } else if (e.target.id == "cancelar") {
         var p = document.querySelector("p");
-        var padre = e.target.parentNode;
-        padre.removeChild(p);
+        p.innerText = "";
     };
 });
